@@ -4,24 +4,33 @@ function checkAnswer(playerMove) {
 
     if (playerMove === 'rock')
     {
-        return 'correct'
+        
+        return true
     } else if (playerMove === 'paper') {
-        return 'correct'
+        
+        return true
     } else if (playerMove === 'scissors') {
-        return 'correct'
+        
+        return true
     } else {
-        return 'incorrect'
+        return false
     }
 
 }
 
 checkAnswer(answer)
 
-
-if (checkAnswer(answer) === 'correct') {
-    console.log(`You picked ${answer}!`)
-} else {
-    while (checkAnswer(answer) === 'incorrect') {
-    answer = prompt("Sorry what was that ?")
+while (checkAnswer(answer) === false) {
+    answer = prompt("Sorry what was that ?").toLowerCase()
     checkAnswer(answer)}
-}
+
+    console.log(`You picked ${answer}!`)
+
+let diceRoll = Math.random()*10
+
+let computerPlay = ''
+
+if (diceRoll <= 3.33) {computerPlay = 'rock'} else if (diceRoll <= 6.66) {computerPlay = 'paper'} else {computerPlay = 'scissors'}
+
+console.log(`and I picked ${computerPlay} !`)
+
