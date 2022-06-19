@@ -1,5 +1,10 @@
 // prompt user for input and store as var answer, case insensitive //
-let answer = prompt("Rock, paper or scissors ? Let\'s play !").toLowerCase()
+let roundCount = 0
+let gameStarted = false
+if (gameStarted = false) {
+    let answer = prompt("Rock, paper or scissors ? Let\'s play !").toLowerCase()
+} else { let answer = prompt('OK, next round, pick your move !').toLowerCase()
+}
 
 // function to automatically check if player input is one of three possible moves //
 function checkAnswer(playerMove) {
@@ -50,12 +55,19 @@ if (answer === 'rock') {playerRoll = 0} else if (answer === 'paper') {playerRoll
 function round(playerMove, computerMove) {
     if ((playerMove + 1 % 3) === computerMove) {
         console.log(`Dang, ${computerPlay} beats ${answer}, you lose this round !`)
+        roundCount += 1
+        gameStarted = true
+        return 'lose'
     } else if (playerMove === computerMove) {
-        console.log(`Looks like it's a draw...`)            
+        console.log(`Looks like it's a draw...`)
+        gameStarted = true
+        return 'draw' 
     } else {
         console.log(`See, ${answer} beats ${computerPlay}, you win !`)
+        gameStarted = true
+        roundCount += 1
+        return 'win'
     }
-
 }
 
-round(playerRoll, diceRoll)
+round(playerRoll, diceRoll) 
