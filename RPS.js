@@ -46,7 +46,6 @@ function game() {
 
 // generate random number between 0 and 2 //
     let diceRoll = Math.floor(Math.random()*(2+1))
-    console.log(diceRoll)
 
     let computerPlay = ''
 
@@ -58,11 +57,11 @@ function game() {
 //assign number between 0 and 2 to the player's move
     let playerRoll = ''
 
-    if (answer === 'rock') {playerRoll = 0} else if (answer === 'paper') {playerRoll = 1} else if (answer === 'scissors') {playerRoll === 2}
+    if (answer === 'rock') {playerRoll = 0} else if (answer === 'paper') {playerRoll = 1} else if (answer === 'scissors') {playerRoll = 2}
 
 // plays a round //
     function round(playerMove, computerMove) {
-        if ((playerMove + 1 % 3) === computerMove) {
+        if (((playerMove + 1) % 3) === computerMove) {
             roundCount += 1
             compVictories += 1
             console.log(`Dang, ${computerPlay} beats ${answer}, you lose this round ! You got ${playerVictories} win(s) and I'm at ${compVictories}.`)
@@ -92,4 +91,4 @@ while ((playerVictories < 3) && (compVictories < 3)) {
 } 
     // if a player reaches 3 win, display win or lose message //
 if (playerVictories === 3 ) {console.log('That\'s three wins for you, you win the game !')}
-else if (compVictories === 3) {console.log('Three wins for me, you lose the game !')}
+else if (compVictories === 3) {console.log('Three wins for me, you lose the game !')}// prompt user for input and store as var answer, case insensitive //
