@@ -1,38 +1,44 @@
-// prompt user for input and store as var answer, case insensitive //
+
 let roundCount = 0
 let gameStarted = false
-if (gameStarted = false) {
-    let answer = prompt("Rock, paper or scissors ? Let\'s play !").toLowerCase()
-} else { let answer = prompt('OK, next round, pick your move !').toLowerCase()
-}
+let compVictories = 0
+let playerVictories = 0
+let answer = prompt("Rock, paper or scissors ? Let\'s play !").toLowerCase()
+
+function game() {
+// prompt user for input and store as var answer, case insensitive //
+
+    if (gameStarted === true) {
+        answer = prompt('OK, next round, pick your move !').toLowerCase()
+        }
 
 // function to automatically check if player input is one of three possible moves //
-function checkAnswer(playerMove) {
+    function checkAnswer(playerMove) {
 
-    if (playerMove === 'rock')
-    {
-        
-        return true
-    } else if (playerMove === 'paper') {
-        
-        return true
-    } else if (playerMove === 'scissors') {
-        
-        return true
-    } else {
-        return false
+        if (playerMove === 'rock')
+        {
+            
+            return true
+        } else if (playerMove === 'paper') {
+            
+            return true
+        } else if (playerMove === 'scissors') {
+            
+            return true
+        } else {
+            return false
+        }
+
     }
 
-}
+    checkAnswer(answer)
 
-checkAnswer(answer)
+    // prompts again until user input is one of three possible moves //
+    while (checkAnswer(answer) === false) {
+        answer = prompt("Sorry what was that ?").toLowerCase()
+        checkAnswer(answer)}
 
-// prompts again until user input is one of three possible moves //
-while (checkAnswer(answer) === false) {
-    answer = prompt("Sorry what was that ?").toLowerCase()
-    checkAnswer(answer)}
-
-    console.log(`You picked ${answer}!`)
+        console.log(`You picked ${answer}!`)
 
 
 // generate random number between 0 and 2 //
@@ -54,8 +60,9 @@ if (answer === 'rock') {playerRoll = 0} else if (answer === 'paper') {playerRoll
 // plays a round //
 function round(playerMove, computerMove) {
     if ((playerMove + 1 % 3) === computerMove) {
-        console.log(`Dang, ${computerPlay} beats ${answer}, you lose this round !`)
         roundCount += 1
+        compVictories += 1
+        console.log(`Dang, ${computerPlay} beats ${answer}, you lose this round ! You got ${playerVictories} win(s) and I'm at ${compVictories}.`)
         gameStarted = true
         return 'lose'
     } else if (playerMove === computerMove) {
@@ -63,11 +70,22 @@ function round(playerMove, computerMove) {
         gameStarted = true
         return 'draw' 
     } else {
-        console.log(`See, ${answer} beats ${computerPlay}, you win !`)
         gameStarted = true
         roundCount += 1
+        playerVictories += 1
+        console.log(`Round ${roundCount}: See, ${answer} beats ${computerPlay}, you win ! You got ${playerVictories} wins and I'm at ${compVictories}.`)
         return 'win'
     }
 }
 
 round(playerRoll, diceRoll) 
+
+    
+}
+
+while ((playerVictories < 3) && (compVictories < 3)) {
+    game()
+} 
+
+if (playerVictories === 3 ) {console.log('That\'s three wins for you, you win the game !')}
+else if (compVictories === 3) {console.log('Three wins for me, you lose the game !')}
