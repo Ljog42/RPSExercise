@@ -3,17 +3,19 @@ let roundCount = 0
 let gameStarted = false
 let compVictories = 0
 let playerVictories = 0
+
+// prompt user for input and store as var answer, case insensitive //
 let answer = prompt("Rock, paper or scissors ? Let\'s play !").toLowerCase()
 
 // plays up to 5 round, stops after a player reaches 3 wins, keeps score and display victory messages //
 function game() {
-// prompt user for input and store as var answer, case insensitive //
 
+    // changes prompt message if it's not the first round //
     if (gameStarted === true) {
         answer = prompt('OK, next round, pick your move !').toLowerCase()
         }
 
-// function to automatically check if player input is one of three possible moves //
+    // function to automatically check if player input is one of three possible moves //
     function checkAnswer(playerMove) {
 
         if (playerMove === 'rock')
@@ -84,9 +86,10 @@ function game() {
         
     }
 
+    // let game run until a player reaches 3 wins
 while ((playerVictories < 3) && (compVictories < 3)) {
     game()
 } 
-
+    // if a player reaches 3 win, display win or lose message //
 if (playerVictories === 3 ) {console.log('That\'s three wins for you, you win the game !')}
 else if (compVictories === 3) {console.log('Three wins for me, you lose the game !')}
