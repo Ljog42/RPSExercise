@@ -98,7 +98,7 @@ else if (compVictories === 3) {console.log('Three wins for me, you lose the game
 //Events
 
 // generate random number between 0 and 2 //
-let roundCount = 0
+let roundCount = 1
 let gameStarted = false
 let compVictories = 0
 let playerVictories = 0
@@ -106,38 +106,40 @@ let computerPlay = ''
 let answer =''
 let playerRoll = ''
 let diceRoll = 0
-    
 
 
 function round(playerMove, computerMove) {
     if (((playerMove + 1) % 3) === computerMove) {
         roundCount += 1
         compVictories += 1
-        console.log(`Dang, ${computerPlay} beats ${answer}, you lose this round ! You got ${playerVictories} win(s) and I'm at ${compVictories}.`)
+        
+        document.querySelector(".round").textContent=`Dang, ${computerPlay} beats ${answer}, you lose this round ! You got ${playerVictories} win(s) and I'm at ${compVictories}.`
         gameStarted = true
         return 'lose'
     } else if (playerMove === computerMove) {
-        console.log(`Looks like it's a draw...`)
+        document.querySelector(".round").textContent=`Looks like it's a draw...`
         gameStarted = true
         return 'draw' 
     } else {
         gameStarted = true
         roundCount += 1
         playerVictories += 1
-        console.log(`Round ${roundCount}: See, ${answer} beats ${computerPlay}, you win ! You got ${playerVictories} wins and I'm at ${compVictories}.`)
+        document.querySelector(".round").textContent=`See, ${answer} beats ${computerPlay}, you win ! You got ${playerVictories} wins and I'm at ${compVictories}.`
         return 'win'
     }
+    
 }
 
-
+// selects all buttons
 document.querySelectorAll('.button').forEach(element => {
+    //add an event on click for all buttons
     element.addEventListener("click", function(e) {
+        //retrieve button content to know which move the player picked
         let ButtonContent = (this.textContent)
         answer = ButtonContent.toLowerCase()
-        
-        console.log(answer)
+        //generates random number in order to pick a move for the computer
         diceRoll = Math.floor(Math.random()*(2+1))
-        console.log(diceRoll)
+
 
     // picks one of three possible moves for the computer to play, depending and the random number generated //
         if (diceRoll === 0 ) {computerPlay = 'rock'} else if (diceRoll === 1 ) {computerPlay = 'paper'} else if (diceRoll === 2) {computerPlay = 'scissors'}
@@ -149,7 +151,16 @@ document.querySelectorAll('.button').forEach(element => {
 
         round(playerRoll, diceRoll)
 
-        console.log()
+        document.querySelector(".tally").textContent=`V = ${playerVictories} / D = ${compVictories}`
+
+        if (roundCount > 1) {document.querySelector(".roundCounter").textContent=`Round ${roundCount} : Pick your next move!`}
+
+        if (playerVictories === 3 ) {
+            document.querySelector(".victory").textContent='That\'s three wins for you, you win the game !'}
+        
+        else if (compVictories === 3) {
+            document.querySelector(".victory").textContent='Three wins for me, you lose the game !'}
+
     })
 });
 
