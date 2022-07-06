@@ -129,16 +129,19 @@ function round(playerMove, computerMove) {
     }
 }
 
-const rock = document.getElementById('rock')
+
+const button = document.querySelector('button')
 //const paper = document.querySelector('button#paper')
 //const scissors = document.querySelector('button#scissors')
 
 
 
-rock?.addEventListener("click", event => {
-    answer = 'rock'
-    console.log(answer)
+
+button.addEventListener("click", function(e) {
+    let ButtonContent = (this.textContent)
+    answer = ButtonContent.toLowerCase()
     
+    console.log(answer)
     diceRoll = Math.floor(Math.random()*(2+1))
     console.log(diceRoll)
 
@@ -153,5 +156,6 @@ rock?.addEventListener("click", event => {
     round(playerRoll, diceRoll)
 
     console.log()
+
 });
 
