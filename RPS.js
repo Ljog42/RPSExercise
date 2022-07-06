@@ -130,32 +130,26 @@ function round(playerMove, computerMove) {
 }
 
 
-const button = document.querySelector('button')
-//const paper = document.querySelector('button#paper')
-//const scissors = document.querySelector('button#scissors')
+document.querySelectorAll('.button').forEach(element => {
+    element.addEventListener("click", function(e) {
+        let ButtonContent = (this.textContent)
+        answer = ButtonContent.toLowerCase()
+        
+        console.log(answer)
+        diceRoll = Math.floor(Math.random()*(2+1))
+        console.log(diceRoll)
 
+    // picks one of three possible moves for the computer to play, depending and the random number generated //
+        if (diceRoll === 0 ) {computerPlay = 'rock'} else if (diceRoll === 1 ) {computerPlay = 'paper'} else if (diceRoll === 2) {computerPlay = 'scissors'}
 
+        console.log(`and I picked ${computerPlay} !`)
 
+    //assign number between 0 and 2 to the player's move
+        if (answer === 'rock') {playerRoll = 0} else if (answer === 'paper') {playerRoll = 1} else if (answer === 'scissors') {playerRoll = 2}
 
-button.addEventListener("click", function(e) {
-    let ButtonContent = (this.textContent)
-    answer = ButtonContent.toLowerCase()
-    
-    console.log(answer)
-    diceRoll = Math.floor(Math.random()*(2+1))
-    console.log(diceRoll)
+        round(playerRoll, diceRoll)
 
-// picks one of three possible moves for the computer to play, depending and the random number generated //
-    if (diceRoll === 0 ) {computerPlay = 'rock'} else if (diceRoll === 1 ) {computerPlay = 'paper'} else if (diceRoll === 2) {computerPlay = 'scissors'}
-
-    console.log(`and I picked ${computerPlay} !`)
-
-//assign number between 0 and 2 to the player's move
-    if (answer === 'rock') {playerRoll = 0} else if (answer === 'paper') {playerRoll = 1} else if (answer === 'scissors') {playerRoll = 2}
-
-    round(playerRoll, diceRoll)
-
-    console.log()
-
+        console.log()
+    })
 });
 
